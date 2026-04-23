@@ -7,10 +7,10 @@ Agent skill (SKILL.md) for **Planet Species (PS) Atlas** public HTTP MCP: **one 
 With the [skills CLI](https://skills.sh/docs/cli) (or `npx skills`):
 
 ```bash
-npx skills add <org>/ps-atlas-mcp-skill
+npx skills add interstitial-wg/ps-atlas-mcp-skill
 ```
 
-Replace `<org>` with the publishing GitHub org (e.g. your team’s org). This repo is the canonical **public** home for the skill; the main Atlas application repo may be private.
+This repo is the canonical **public** home for the skill; the main Atlas application repo may be private.
 
 ## What this is
 
