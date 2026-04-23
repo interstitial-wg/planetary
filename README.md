@@ -18,19 +18,19 @@ Uses the [Vercel skills CLI](https://github.com/vercel-labs/skills) (OpenCode, C
 
 ```bash
 # List skills in this repo
-npx skills add interstitial-wg/skills --list
+npx skills add interstitial-systems/skills --list
 
 # Install only Planetary
-npx skills add interstitial-wg/skills --skill planetary
+npx skills add interstitial-systems/skills --skill planetary
 
 # Install everything discovered under skills/
-npx skills add interstitial-wg/skills
+npx skills add interstitial-systems/skills
 ```
 
 Install a single skill by path (sparse checkout):
 
 ```bash
-npx skills add https://github.com/interstitial-wg/skills/tree/main/skills/planetary
+npx skills add https://github.com/interstitial-systems/skills/tree/main/skills/planetary
 ```
 
 ### Claude Code (plugin marketplace)
@@ -38,7 +38,7 @@ npx skills add https://github.com/interstitial-wg/skills/tree/main/skills/planet
 This repo includes [`.claude-plugin/marketplace.json`](./.claude-plugin/marketplace.json) so you can add it as a marketplace, then install the bundled plugin (same pattern as [anthropics/skills](https://github.com/anthropics/skills)):
 
 ```text
-/plugin marketplace add interstitial-wg/skills
+/plugin marketplace add interstitial-systems/skills
 ```
 
 Then browse plugins, choose **interstitial-skills** (marketplace) → **interstitial-skills** (plugin) → install. New skills under `skills/` should be listed in `marketplace.json` → `plugins[].skills` when you add them.
