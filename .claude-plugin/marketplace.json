@@ -1,0 +1,19 @@
+{
+  "name": "interstitial-skills",
+  "owner": {
+    "name": "Interstitial"
+  },
+  "metadata": {
+    "description": "Public Agent Skills for Interstitial products and workflows",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "interstitial-skills",
+      "description": "Planetary Software MCP and other Interstitial agent skills",
+      "source": "./",
+      "strict": false,
+      "skills": ["./skills/planetary"]
+    }
+  ]
+}

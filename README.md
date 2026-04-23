@@ -33,12 +33,23 @@ Install a single skill by path (sparse checkout):
 npx skills add https://github.com/interstitial-wg/skills/tree/main/skills/planetary
 ```
 
+### Claude Code (plugin marketplace)
+
+This repo includes [`.claude-plugin/marketplace.json`](./.claude-plugin/marketplace.json) so you can add it as a marketplace, then install the bundled plugin (same pattern as [anthropics/skills](https://github.com/anthropics/skills)):
+
+```text
+/plugin marketplace add interstitial-wg/skills
+```
+
+Then browse plugins, choose **interstitial-skills** (marketplace) → **interstitial-skills** (plugin) → install. New skills under `skills/` should be listed in `marketplace.json` → `plugins[].skills` when you add them.
+
 ## Layout
 
 | Path | Purpose |
 | ---- | ------- |
 | [`skills/`](./skills) | One folder per skill; each contains `SKILL.md`. |
 | [`template/`](./template) | Starter `SKILL.md` for new skills. |
+| [`.claude-plugin/`](./.claude-plugin) | Claude Code marketplace manifest (`marketplace.json`). |
 
 ## Spec
 
