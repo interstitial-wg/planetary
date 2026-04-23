@@ -64,4 +64,4 @@ The path says **`atlas`**; the product name for people is **Planetary**. Both ca
 
 ## Repository note
 
-This skill repo is **public** so `npx skills add` works without a private app repo. It **does not** host the server — it encodes how agents should work with **Planetary**’s public MCP as above.
+GitHub: **interstitial-wg/skills** — **public** so `npx skills add interstitial-wg/skills` works without a private app repo. This repo **does not** host the server — it encodes how agents should work with **Planetary**’s public MCP as above.

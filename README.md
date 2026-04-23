@@ -5,7 +5,7 @@ Agent skill for **Interstitial**’s **Planetary Software** product: **one HTTP 
 ## Install
 
 ```bash
-npx skills add interstitial-wg/planetary
+npx skills add interstitial-wg/skills
 ```
 
 The main application repository may be private; this repo is the **public** home for the skill only.
@@ -17,7 +17,7 @@ The main application repository may be private; this repo is the **public** home
 
 ## Layout
 
-- Root `SKILL.md` — skill id `planetary`.
+- Root `SKILL.md` — skill id `planetary` (repo: **interstitial-wg/skills**).
 
 ## Spec
 
