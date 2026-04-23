@@ -1,26 +1,24 @@
-# ps-atlas-mcp-skill
+# Planetary MCP skill
 
-Agent skill (SKILL.md) for **Planet Species (PS) Atlas** public HTTP MCP: **one URL, four tools** — the MVP story for `POST /api/v1/atlas/mcp`.
+Agent skill for **Interstitial**’s **Planetary Software** product: **one HTTP MCP URL, four tools** — the story for `POST /api/v1/atlas/mcp` (the path uses `atlas`; the product name is **Planetary**).
 
 ## Install
 
-With the [skills CLI](https://skills.sh/docs/cli) (or `npx skills`):
-
 ```bash
-npx skills add interstitial-wg/ps-atlas-mcp-skill
+npx skills add interstitial-wg/planetary-mcp-skill
 ```
 
-This repo is the canonical **public** home for the skill; the main Atlas application repo may be private.
+The main application repository may be private; this repo is the **public** home for the skill only.
 
 ## What this is
 
-- **Skill** = procedural context for agents (`SKILL.md`), installable on Cursor, Claude Code, OpenCode, and [many other agents](https://github.com/vercel-labs/skills#supported-agents).
-- **Atlas MCP** = the HTTP service you run; this repo does not ship the server.
+- **Skill** = `SKILL.md` instructions for coding agents (Cursor, Claude Code, OpenCode, [and others](https://github.com/vercel-labs/skills#supported-agents)).
+- **Planetary MCP** = the HTTP service you run; this repo only documents how agents should use it.
 
-## Skill layout
+## Layout
 
-- `SKILL.md` at repo root — single skill `ps-atlas-mcp`, discoverable by the standard CLI paths.
+- Root `SKILL.md` — skill id `planetary-mcp`.
 
 ## Spec
 
-Agent skills follow the [Agent Skills specification](https://agentskills.io). Directory / leaderboard: [skills.sh](https://skills.sh/).
+[Agent Skills specification](https://agentskills.io) · [skills.sh](https://skills.sh/)

@@ -1,65 +1,67 @@
 ---
-name: ps-atlas-mcp
-description: Use Planet Species (PS) Atlas public HTTP MCP—one URL exposes exactly four tools (describe_atlas, search_sensors, get_readings, describe_sensor) for DB coverage, sensor discovery, readings, and per-sensor detail. For MVP docs and integrators; prefer this over legacy registry names or per-sensor upstream MCPs unless backward-compat or source-specific tools are required.
+name: planetary-mcp
+description: Interstitial’s Planetary Software product — environmental and sensor data via a single public HTTP MCP. One URL exposes four tools (describe_atlas, search_sensors, get_readings, describe_sensor) for coverage summaries, finding sensors, readings, and sensor detail. Use for integrators and agents; prefer the Planetary (atlas) MCP over legacy registry or per-sensor upstream MCPs unless migration or source-specific tools are required.
 ---
 
-# Planet Species Atlas — public MCP (MVP)
+# Planetary — public MCP (MVP)
+
+**Planetary** is what we call the product (Planetary Software), from **Interstitial** — a single surface for **environmental observation and sensor** data. Technically, the public HTTP route uses **`atlas` in the path** and tool names like `describe_atlas`; that’s the API contract, not a separate “Atlas product name.”
 
 ## When to use
 
-- Integrating an agent or app with **Atlas env observation data** via **Model Context Protocol over HTTP**.
-- The product story to document and test is: **one Atlas MCP entrypoint, four tools** — not “four separate MCP services.”
-- You need: **what’s in the DB** (`describe_atlas`), **find sensors** (`search_sensors`), **time series / latest** (`get_readings`), or **one sensor’s full detail** (`describe_sensor`).
+- You’re building an **agent or integration** against **Interstitial Planetary** over **MCP (HTTP + JSON)**.
+- The story you should tell is: **one MCP URL, four tools** — not “four separate MCP services.”
+- You need: **what’s in the DB** (`describe_atlas`), **find sensors** (`search_sensors`), **time series / latest** (`get_readings`), or **one sensor** (`describe_sensor`).
 
-**Do not** present the **legacy registry** or **per-sensor upstream** surfaces as the primary MVP; use them only when the user explicitly needs old tool names or source-specific Python MCP catalogs.
+**Do not** lead with the **legacy registry** or **per-sensor upstream** routes as the main product; use them only for backward compatibility or when someone explicitly needs old tool names or a source-specific Python MCP.
 
 ---
 
-## Public MVP surface (authoritative for agents)
+## Public MVP (what to ship in docs and tests)
 
 | Item | Value |
 |------|--------|
 | **Method / path** | `POST /api/v1/atlas/mcp` |
-| **Auth** | As required by the deployment (e.g. API key header); never commit secrets. |
-| **Shape** | Standard JSON-RPC style MCP over HTTP for this route — the LLM sees **exactly four tools** on this URL. |
+| **Auth** | Per deployment (e.g. API key header). Never put secrets in prompts or commits. |
+| **Shape** | MCP over HTTP on this route: the model sees **exactly four tools** on this one URL. |
+
+The path says **`atlas`**; the product name for people is **Planetary**. Both can appear in the same sentence: *“Planetary’s public MCP is `…/atlas/mcp`.”*
 
 ### Four tools (plain language)
 
 | Tool | Role |
 |------|------|
-| **describe_atlas** | Coverage-style summary: counts, services, data types, optional bounds — *what’s in the DB at a glance*. |
+| **describe_atlas** | Coverage-style summary: counts, services, data types, optional bounds — *what’s in the DB*. |
 | **search_sensors** | Find sensors: **bbox and/or point+radius**, filters, limits. |
-| **get_readings** | Time series / latest reading; optional aggregation **where the implementation supports it**. |
+| **get_readings** | Time series / latest reading; optional aggregation where supported. |
 | **describe_sensor** | One sensor: ids, backing service, location, metadata. |
 
-**Headline for docs:** one Atlas MCP endpoint, **four tools** — not “four MCP services.”
+**One-liner for docs:** **Planetary** = one MCP endpoint, **four tools** — not four separate MCPs.
 
 ---
 
-## Optional / not MVP (use only when needed)
+## Optional / not MVP
 
-### Legacy registry MCP (backward compatibility)
+### Legacy registry MCP
 
-- **Path:** `POST /api/v1/sensors/registry/mcp` (same backend, **old tool names**).
-- **Tools:** `list_sensors`, `sensor_connected_services`, `sensor_cleaned_stream`, `sensor_last_reading`.
-- **Use when:** migrating old clients or the user names these tools explicitly. **MVP documentation should point integrators to** `POST /api/v1/atlas/mcp` **only** unless they need the legacy contract.
+- `POST /api/v1/sensors/registry/mcp` — older tool names (`list_sensors`, `sensor_connected_services`, `sensor_cleaned_stream`, `sensor_last_reading`).
+- Use for **migrations** or when a client only knows these names. Default **Planetary** docs should use **`/api/v1/atlas/mcp`**.
 
-### Per-sensor upstream MCP (power users / source-specific)
+### Per-sensor upstream MCP
 
-- **Path:** `POST /api/v1/sensors/:sensorId/mcp` **when** the sensor has a `service_id` (forwards to registered upstream Python MCP services: e.g. ndbc, airnow, purpleair, trefle, wqp).
-- **Shape:** **Many tools per upstream**, not the four-tool public MVP.
-- **Use when:** deep testing or source-specific behavior; **separate** from the single public four-tool product story.
+- `POST /api/v1/sensors/:sensorId/mcp` when the sensor has a `service_id` (forwards to upstream services: e.g. ndbc, airnow, purpleair, trefle, wqp). **Many tools per source**, not the four-tool public MVP.
+- Use for **deep or source-specific** work — separate from the main Planetary four-tool line.
 
 ---
 
 ## Agent behavior
 
-1. For **default Atlas integration**, assume **only** `POST /api/v1/atlas/mcp` and the **four** tools above; read tool schemas from the live MCP response.
-2. Mention **legacy** or **per-sensor** paths only if the user asks for old names, migration, or upstream-specific tool catalogs.
-3. After implementation phases land, re-verify **MVP** against: four tools, reliability, limits, observability, and public docs — not the optional surfaces unless scoped.
+1. Default to **`POST /api/v1/atlas/mcp`** and the **four** tools; pull live schemas from the server.
+2. Call it **Planetary** (or Interstitial Planetary) in user-facing text; use **`atlas` in paths and legacy tool names** where the API requires it.
+3. Bring up legacy or per-sensor MCP only when the user’s task requires it.
 
 ---
 
 ## Repository note
 
-This skill is published separately so public agents can install it with `npx skills add` without access to a private monorepo. It does **not** host the server; it **documents how to work with** the public Atlas MCP as specified above.
+This skill repo is **public** so `npx skills add` works without a private app repo. It **does not** host the server — it encodes how agents should work with **Planetary**’s public MCP as above.
