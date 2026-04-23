@@ -1,23 +1,44 @@
-# Planetary
+# Interstitial skills
 
-Agent skill for **Interstitial**’s **Planetary Software** product: **one HTTP MCP URL, four tools** — the story for `POST /api/v1/atlas/mcp` (the path uses `atlas`; the product name is **Planetary**).
+Public **Agent Skills** for **Interstitial** products and workflows. Each skill is a self-contained folder with a `SKILL.md` (YAML frontmatter + instructions). Layout matches common multi-skill repos such as [anthropics/skills](https://github.com/anthropics/skills): browse [`./skills`](./skills) for what ships here.
+
+The main application code may live in private repos; this repository is the **public** catalog for installable skills only.
+
+## Skills
+
+| Skill | Folder | Summary |
+| ----- | ------ | ------- |
+| **planetary** | [`skills/planetary`](./skills/planetary) | Interstitial **Planetary Software** — one HTTP MCP URL (`POST /api/v1/atlas/mcp`), four tools for environmental / sensor data. |
+
+Add new rows here when you add folders under `skills/`.
 
 ## Install
 
+Uses the [Vercel skills CLI](https://github.com/vercel-labs/skills) (OpenCode, Claude Code, Cursor, and [many other agents](https://github.com/vercel-labs/skills#supported-agents)).
+
 ```bash
+# List skills in this repo
+npx skills add interstitial-wg/skills --list
+
+# Install only Planetary
+npx skills add interstitial-wg/skills --skill planetary
+
+# Install everything discovered under skills/
 npx skills add interstitial-wg/skills
 ```
 
-The main application repository may be private; this repo is the **public** home for the skill only.
+Install a single skill by path (sparse checkout):
 
-## What this is
-
-- **Skill** = `SKILL.md` instructions for coding agents (Cursor, Claude Code, OpenCode, [and others](https://github.com/vercel-labs/skills#supported-agents)).
-- **Planetary MCP** = the HTTP service you run; this repo only documents how agents should use it.
+```bash
+npx skills add https://github.com/interstitial-wg/skills/tree/main/skills/planetary
+```
 
 ## Layout
 
-- Root `SKILL.md` — skill id `planetary` (repo: **interstitial-wg/skills**).
+| Path | Purpose |
+| ---- | ------- |
+| [`skills/`](./skills) | One folder per skill; each contains `SKILL.md`. |
+| [`template/`](./template) | Starter `SKILL.md` for new skills. |
 
 ## Spec
 
