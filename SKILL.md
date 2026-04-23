@@ -1,5 +1,5 @@
 ---
-name: planetary-mcp
+name: planetary
 description: Interstitial’s Planetary Software product — environmental and sensor data via a single public HTTP MCP. One URL exposes four tools (describe_atlas, search_sensors, get_readings, describe_sensor) for coverage summaries, finding sensors, readings, and sensor detail. Use for integrators and agents; prefer the Planetary (atlas) MCP over legacy registry or per-sensor upstream MCPs unless migration or source-specific tools are required.
 ---
 
